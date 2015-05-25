@@ -9,16 +9,15 @@
 
 using System;
 
-namespace RMUD
+namespace SharpRuleEngine
 {
-
 	public class RuleBuilder<TR>
     {
         public Rule<TR> Rule;
 
 		//The associated object is set by the MudObject rule factory functions and used to
         // implement useful shortcuts on the rule builder types.
-        public MudObject AssociatedObject = null;
+        public RuleObject AssociatedObject = null;
 
         public RuleBuilder<TR> When(Func<bool> Clause)
         {
@@ -66,7 +65,7 @@ namespace RMUD
 			return this;
 		}}
 
-		public RuleBuilder<TR> Associate(MudObject Object)
+		public RuleBuilder<TR> Associate(RuleObject Object)
 		{
 			this.AssociatedObject = Object;
 			return this;
@@ -93,7 +92,7 @@ namespace RMUD
 
 		//The associated object is set by the MudObject rule factory functions and used to
         // implement useful shortcuts on the rule builder types.
-        public MudObject AssociatedObject = null;
+        public RuleObject AssociatedObject = null;
 
         public RuleBuilder<<#Args(i);#>, TR> When(Func<<#Args(i);#>, bool> Clause)
         {
@@ -141,7 +140,7 @@ namespace RMUD
 			return this;
 		}}
 
-		public RuleBuilder<<#Args(i);#>, TR> Associate(MudObject Object)
+		public RuleBuilder<<#Args(i);#>, TR> Associate(RuleObject Object)
 		{
 			this.AssociatedObject = Object;
 			return this;

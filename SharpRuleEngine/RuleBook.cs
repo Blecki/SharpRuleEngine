@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RMUD
+namespace SharpRuleEngine
 {
     public class RuleComparer : System.Collections.Generic.IComparer<Rule>
     {
@@ -78,9 +78,9 @@ namespace RMUD
 
         protected void LogRule(Rule Rule)
         {
-            if (Owner.GlobalRules.LogTo != null && Owner.GlobalRules.LogTo.ConnectedClient != null)
+            if (Owner.GlobalRules.Log != null)
             {
-                Owner.GlobalRules.LogTo.ConnectedClient.Send(Name + "<" + String.Join(", ", Rule.GetArgumentTypes().Select(t => t.Name)) + "> -> " + ResultType.Name + " : " + (String.IsNullOrEmpty(Rule.DescriptiveName) ? "NONAME" : Rule.DescriptiveName) + "\r\n");
+                Owner.GlobalRules.Log(Name + "<" + String.Join(", ", Rule.GetArgumentTypes().Select(t => t.Name)) + "> -> " + ResultType.Name + " : " + (String.IsNullOrEmpty(Rule.DescriptiveName) ? "NONAME" : Rule.DescriptiveName) + "\r\n");
             }
         }
     }

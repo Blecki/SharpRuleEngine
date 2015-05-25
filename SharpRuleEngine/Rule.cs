@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RMUD
+namespace SharpRuleEngine
 {
     public enum RulePriority
     {
@@ -48,5 +48,5 @@ namespace RMUD
             var genericTypes = BodyClause.GetType().GetGenericArguments();
             return genericTypes.Take(genericTypes.Length - 1).ToArray();
         }
-    }
+    }   
 }

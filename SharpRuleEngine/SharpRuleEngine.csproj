@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalRules.cs" />
+    <Compile Include="RuleSourceAddRuleGen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RuleSourceAddRuleGen.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="RuleBook.cs" />
@@ -69,6 +75,10 @@
     <Compile Include="RuleSource.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="RuleSourceAddRuleGen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RuleSourceAddRuleGen.cs</LastGenOutput>
+    </None>
     <None Include="RuleBuilderGen.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RuleBuilderGen1.cs</LastGenOutput>
