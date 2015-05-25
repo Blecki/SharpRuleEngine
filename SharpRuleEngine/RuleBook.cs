@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SharpRuleEngine
+namespace RMUD
 {
     public class RuleComparer : System.Collections.Generic.IComparer<Rule>
     {
@@ -30,7 +30,7 @@ namespace SharpRuleEngine
     {
         public String Name;
         public String Description;
-        public List<Type> ArgumentTypes = new List<Type>();
+        public int ArgumentCount = 0;
         public Type ResultType;
         public RuleSet Owner;
         public List<Rule> Rules = new List<Rule>();
@@ -39,16 +39,6 @@ namespace SharpRuleEngine
         public RuleBook(RuleSet Owner)
         {
             this.Owner = Owner;
-        }
-
-        public bool CheckArgumentTypes(Type ResultType, params Type[] ArgTypes)
-        {
-            if (this.ResultType != ResultType) return false;
-            if (ArgTypes.Length != ArgumentTypes.Count) return false;
-            for (int i = 0; i < ArgTypes.Length; ++i)
-                if (!ArgumentTypes[i].IsAssignableFrom(ArgTypes[i]))
-                    return false;
-            return true;
         }
 
         public virtual void CheckRule(Rule Rule) { throw new NotImplementedException(); }
@@ -88,10 +78,10 @@ namespace SharpRuleEngine
 
         protected void LogRule(Rule Rule)
         {
-            //if (Owner.GlobalRules.LogTo != null && Owner.GlobalRules.LogTo.ConnectedClient != null)
-            //{
-            //    Owner.GlobalRules.LogTo.ConnectedClient.Send(Name + "<" + String.Join(", ", ArgumentTypes.Select(t => t.Name)) + "> -> " + ResultType.Name + " : " + (String.IsNullOrEmpty(Rule.DescriptiveName) ? "NONAME" : Rule.DescriptiveName) + "\r\n");
-            //}
+            if (Owner.GlobalRules.LogTo != null && Owner.GlobalRules.LogTo.ConnectedClient != null)
+            {
+                Owner.GlobalRules.LogTo.ConnectedClient.Send(Name + "<" + String.Join(", ", Rule.GetArgumentTypes().Select(t => t.Name)) + "> -> " + ResultType.Name + " : " + (String.IsNullOrEmpty(Rule.DescriptiveName) ? "NONAME" : Rule.DescriptiveName) + "\r\n");
+            }
         }
     }
 
