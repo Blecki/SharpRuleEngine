@@ -78,7 +78,7 @@ namespace SharpRuleEngine
 
         protected void LogRule(Rule Rule)
         {
-            if (Owner.GlobalRules.Log != null)
+            if (Owner != null && Owner.GlobalRules.Log != null)
             {
                 Owner.GlobalRules.Log(Name + "<" + String.Join(", ", Rule.GetArgumentTypes().Select(t => t.Name)) + "> -> " + ResultType.Name + " : " + (String.IsNullOrEmpty(Rule.DescriptiveName) ? "NONAME" : Rule.DescriptiveName) + "\r\n");
             }

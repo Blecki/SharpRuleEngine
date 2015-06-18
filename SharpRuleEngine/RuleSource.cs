@@ -21,21 +21,21 @@ namespace SharpRuleEngine
         /// allows rooms to define rules that affect actions that only involve their contents. MudObject's are implemented
         /// such that their location is their linked rule source.
         /// </summary>
-        public RuleObject LinkedRuleSource { get; protected set; }
+        public virtual RuleObject LinkedRuleSource { get { return null; } }
 
-        public static RuleEngine GlobalRules { get { return SharpRuleEngine.GlobalRules.RuleEngine; } }
+        public virtual RuleEngine GlobalRules { get { return SharpRuleEngine.GlobalRules.RuleEngine; } }
 
-        public static PerformResult ConsiderPerformRule(String Name, params Object[] Arguments)
+        public PerformResult ConsiderPerformRule(String Name, params Object[] Arguments)
         {
             return GlobalRules.ConsiderPerformRule(Name, Arguments);
         }
 
-        public static CheckResult ConsiderCheckRule(String Name, params Object[] Arguments)
+        public CheckResult ConsiderCheckRule(String Name, params Object[] Arguments)
         {
             return GlobalRules.ConsiderCheckRule(Name, Arguments);
         }
 
-        public static RT ConsiderValueRule<RT>(String Name, params Object[] Arguments)
+        public RT ConsiderValueRule<RT>(String Name, params Object[] Arguments)
         {
             return GlobalRules.ConsiderValueRule<RT>(Name, Arguments);
         }
