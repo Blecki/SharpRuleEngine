@@ -67,7 +67,10 @@ namespace SharpRuleEngine
 
         public void DeleteRule(String RuleBookName, String RuleID)
         {
-            Rules.DeleteRule(RuleBookName, RuleID);
+            CreateNewRule(() =>
+                {
+                    Rules.DeleteRule(RuleBookName, RuleID);
+                });
         }
 
         /// <summary>
