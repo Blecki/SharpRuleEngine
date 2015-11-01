@@ -108,7 +108,7 @@ namespace SharpRuleEngine
             }
         }
 
-        public PerformResult ConsiderPerformRule(String Name, Func<Object[],IEnumerable<RuleSet>> RuleSetEnumerator, params Object[] Arguments)
+        public PerformResult ConsiderPerformRule_Enum(String Name, Func<Object[],IEnumerable<RuleSet>> RuleSetEnumerator, params Object[] Arguments)
         {
             if (Arguments == null) Arguments = new Object[] { null };
 
@@ -129,7 +129,7 @@ namespace SharpRuleEngine
         /// <returns></returns>
         public PerformResult ConsiderPerformRule(String Name, params Object[] Arguments)
         {
-            return ConsiderPerformRule(Name, EnumerateRuleSets, Arguments);
+            return ConsiderPerformRule_Enum(Name, EnumerateRuleSets, Arguments);
         }
 
         /// <summary>
